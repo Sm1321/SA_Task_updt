@@ -2,6 +2,8 @@ import streamlit as st
 import mysql.connector
 import pandas as pd
 
+
+#-----------------------------------------------------------------------------------------------------------
 # Step 1: Database Connection
 @st.cache_resource
 def get_database_connection():
@@ -13,6 +15,7 @@ def get_database_connection():
     )
     return connection
 
+#--------------------------------------------------------------------------------------------------------
 # Step 2: Fetch Data with Column Names
 def fetch_employee_data():
     connection = get_database_connection()
@@ -44,6 +47,7 @@ def fetch_project_list_data():
     cursor.close()
     return df
 
+#---------------------------------------------------------------------------------------------------------------
 # Step 3: Insert New Employee
 def add_new_employee(name, position, skills, current_status):
     connection = get_database_connection()
@@ -57,6 +61,7 @@ def add_new_employee(name, position, skills, current_status):
     connection.commit()
     cursor.close()
 
+#---------------------------------------------------------------------------------------------------------------
 # Step 4: Insert New Project
 def add_new_project(project, description, start_date, expected_completion, internal_or_external, status):
     connection = get_database_connection()
@@ -68,6 +73,8 @@ def add_new_project(project, description, start_date, expected_completion, inter
     connection.commit()
     cursor.close()
 
+
+#-----------------------------------------------------------------------------------------------------------------------
 # Step 5: Insert Employee Work Details
 def add_employee_work_details(weekday, employee, project, time_in_hours):
     connection = get_database_connection()
@@ -79,6 +86,7 @@ def add_employee_work_details(weekday, employee, project, time_in_hours):
     connection.commit()
     cursor.close()
 
+#--------------------------------------------------------------------------------------------------------
 # Step 6: Streamlit App Layout with Sidebar
 st.sidebar.title("Choose your Task here")
 option = st.sidebar.selectbox(
